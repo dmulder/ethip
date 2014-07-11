@@ -10,9 +10,10 @@ To install on openSUSE:
 
 To use:
 
->>> from ethip import ethip
->>> print ethip.getip('00:1E:C9:56:3C:8E', '10.5.42.255')
-10.5.42.3
->>> print ethip.getmac('10.5.42.3')
-00:1e:c9:56:3c:8e
+    >>> from ethip import ethip
+    >>> print ethip.getip('00:1E:C9:56:3C:8E', '10.5.42.255')
+    10.5.42.3
+    >>> print ethip.getmac('10.5.42.3')
+    00:1e:c9:56:3c:8e
 
+It needs to run as root to get full functionality. Only root has rights to make arp requests. If not run as root, you'll only get responses relative to your current arp table (arp -n).
