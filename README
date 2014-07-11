@@ -1,0 +1,18 @@
+ethip
+=====
+
+Python library that can discover an ip address from the mac address
+
+To install on openSUSE:
+
+    sudo zypper ar http://download.opensuse.org/repositories/home:/dmulder/openSUSE_13.1/ ethip
+    sudo zypper in ethip
+
+To use:
+
+>>> from ethip import ethip
+>>> print ethip.getip('00:1E:C9:56:3C:8E', '10.5.42.255')
+10.5.42.3
+>>> print ethip.getmac('10.5.42.3')
+00:1e:c9:56:3c:8e
+
