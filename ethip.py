@@ -111,7 +111,7 @@ def getip(mac, subnet):
                 elif verify:
                     cache[verify[0]] = verify[1]
                 else:
-                    cache.pop(verify[0])
+                    cache.pop(mac)
             if not address:
                 addrs = [ad for ad in Subnet(subnet).children() if not ad in known.values()]
                 pool = Pool(50)
