@@ -84,9 +84,11 @@ class Subnet:
 def _known_addrs(rev=False):
     """Ask arp for ip to mac address mappings"""
     if not rev:
-        return {line.strip().split()[2].lower():line.strip().split()[0] for line in Popen(['grep', 'ether'], stdin=Popen(['arp', '-n'], stdout=PIPE).stdout, stdout=PIPE).communicate()[0].strip().split('\n')}
+        return dict((line.strip().split()[2].lower(), line.strip().split()[0]) for line in Popen(['grep', 'ether'], stdin=Popen(['arp', '-n'], stdout=PIPE).stdout, stdout=PIPE).communicate()[0].strip().split('\n'))
+        #return {line.strip().split()[2].lower():line.strip().split()[0] for line in Popen(['grep', 'ether'], stdin=Popen(['arp', '-n'], stdout=PIPE).stdout, stdout=PIPE).communicate()[0].strip().split('\n')}
     else:
-        return {line.strip().split()[0]:line.strip().split()[2].lower() for line in Popen(['grep', 'ether'], stdin=Popen(['arp', '-n'], stdout=PIPE).stdout, stdout=PIPE).communicate()[0].strip().split('\n')}
+        return dict((line.strip().split()[0], line.strip().split()[2].lower()) for line in Popen(['grep', 'ether'], stdin=Popen(['arp', '-n'], stdout=PIPE).stdout, stdout=PIPE).communicate()[0].strip().split('\n'))
+        #return {line.strip().split()[0]:line.strip().split()[2].lower() for line in Popen(['grep', 'ether'], stdin=Popen(['arp', '-n'], stdout=PIPE).stdout, stdout=PIPE).communicate()[0].strip().split('\n')}
 
 def _arp_request(ip_addr):
     """Send an ARP request for the IP address"""
